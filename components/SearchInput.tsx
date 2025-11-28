@@ -7,7 +7,7 @@ import { formUrlQuery, removeKeysFromUrlQuery } from '@jsmastery/utils'
 
 const SearchInput = () => {
 
-    const pathName = usePathname()
+    const pathname = usePathname()
     const router = useRouter()
     const searchParams = useSearchParams()
 
@@ -24,16 +24,15 @@ const SearchInput = () => {
             });
 
             router.push(newUrl,{scroll:false});
-        }else{
-            if(pathName === '/companions'){
+        }else if(pathname == '/companions'){
                 const newUrl = removeKeysFromUrlQuery({
                     params: searchParams.toString(),
                     keysToRemove: ['topic']
                 })
                 router.push(newUrl,{scroll:false})
-            }
         }
-    },[searchQuery,router,searchParams,pathName])
+        
+    },[searchQuery,router,pathname])
     return (
         <div className='relative border border-black rounded-lg items-center flex gap-2 px-2 py-1 h-fit'>
             <Image src={'/icons/search.svg'} alt='search' width={15} height={15}/>
