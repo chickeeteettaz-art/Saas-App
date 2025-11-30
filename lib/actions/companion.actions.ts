@@ -37,3 +37,16 @@ export const getAllCompanions =  async ({limit =10,page=1,subject,topic}:GetAllC
     
     return companions
 }
+
+export const getCompanion = async (id:string) => {
+    const supbase = createSubabaseClient()
+
+    const {data,error} = await supbase
+    .from('companions')
+    .select()
+    .eq('id',id)
+
+    if(error) return console.log(error)
+    
+    return data[0]
+}
