@@ -42,7 +42,7 @@ const Page = async () => {
           />
           <CTA/>
         </section>  
-        <Button>Lets do it!</Button>
+        
     </main>
   )
 }
