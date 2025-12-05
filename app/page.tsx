@@ -7,6 +7,11 @@ import { recentSessions } from '@/constants';
 import { getAllCompanions, getRecentSessions } from '@/lib/actions/companion.actions';
 import { getSubjectColor } from '@/lib/utils';
 
+// This page uses auth-bound server utilities (e.g., Clerk) through actions
+// which require request headers. Mark the route as dynamic to avoid
+// static prerender during the build on Vercel.
+export const dynamic = 'force-dynamic'
+
 const Page = async () => {
 
   const companions = await getAllCompanions({limit:3});
