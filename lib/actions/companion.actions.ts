@@ -1,6 +1,8 @@
 "use server"
 import { auth } from "@clerk/nextjs/server"
 import { createSubabaseClient } from "../supabase"
+import { tr } from "zod/locales"
+import { count } from "console"
 
 export const createCompanion = async (formData:CreateCompanion) =>{
     const {userId:author} = await auth()
@@ -100,4 +102,34 @@ export const getUserCompanions = async (userId:string,limit = 10)=>{
     if(error) throw new Error(error.message);
     
     return data;
+}
+
+export const newCompanionPermissions = async () => {
+    const {userId,has} = await auth()
+    const supabase = createSubabaseClient()
+
+    let limit = 0
+    if(has({plan:'pro'})){
+        return true
+    }
+    else if(has({feature:'3_active_companions'})){
+        limit = 3;
+    }
+    else if(has({feature:'10_active_companions'})){
+        limit = 10;
+    }
+
+    const {data,error} = await supabase.from('companions')
+    .select('id',{count:'exact'})
+    .eq('author',userId)
+
+    if(error) throw new Error(error.message);
+
+    const companionCount = data?.length;
+
+    if(companionCount >= limit) {
+        return false;
+    }else{
+        return true;
+    }
 }
