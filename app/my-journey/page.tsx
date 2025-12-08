@@ -78,7 +78,7 @@ const Profile = async () =>{
                             <CompanionsList title="My Companions" companions={companions}/>
                         </AccordionContent>
                     </AccordionItem>
-                </Accordion>
+                </Accordion> 
         </main>
     )
 }
