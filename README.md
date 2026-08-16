@@ -1,4 +1,4 @@
-````markdown name=README.md url=https://github.com/chickeeteettaz-art/Saas-App/blob/main/README.md
+
 # Saas-App
 
 A Next.js (App Router) learning platform that provides "Companions" — short, focused lessons users can launch and complete. Built with Next 16, TypeScript and Tailwind; it uses Clerk for authentication, Supabase for persistence, and is designed to be deployed on Vercel.
@@ -182,4 +182,3 @@ If you'd like, I can:
 - Add a .env.example with recommended env variable names.
 - Add Supabase migration SQL for the two tables used by the app.
 - Generate a short "Deploy to Vercel" badge/button you can paste into the top of this README.
-```
